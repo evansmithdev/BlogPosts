@@ -1,0 +1,69 @@
+﻿<Window x:Class="dev.evansmith.SqlScrewups.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:userControls="clr-namespace:dev.evansmith.SqlScrewups.UserControls"
+        xmlns:viewModels="clr-namespace:dev.evansmith.SqlScrewups.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
+        Title="SQL Screw-ups   |   @evansmithdev   |   evansmith.dev" Height="500" Width="900">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <TabControl Grid.Column="0" Grid.Row="0" Margin="10">
+
+      <TabItem Header="Settings">
+        <userControls:SettingsControl/>
+      </TabItem>
+
+      <TabItem DataContext="{Binding GetOrdersForCustomerInDateRangeViewModel}"
+               Header="Get Orders For Customer In Date Range (SP)">
+        <userControls:GetOrdersControl/>
+      </TabItem>
+
+      <TabItem DataContext="{Binding GetOrdersSpViewModel}"
+               Header="Get Orders (SP)">
+        <userControls:GetOrdersControl/>
+      </TabItem>
+
+      <TabItem DataContext="{Binding GetOrdersSpWithDynamicViewModel}"
+               Header="Get Orders with Dynamic SQL (SP)">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <userControls:LegacyTerritoryControl Grid.Column="0" Grid.Row="0" DataContext="{Binding LegacyTerritoryViewModel}" HorizontalAlignment="Left"/>
+          <userControls:GetOrdersControl Grid.Column="0" Grid.Row="1"/>
+        </Grid>
+      </TabItem>
+
+      <TabItem DataContext="{Binding GetOrdersInlineViewModel}"
+               Header="Get Orders with Dynamic SQL (inline)">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <userControls:LegacyTerritoryControl Grid.Column="0" Grid.Row="0" DataContext="{Binding LegacyTerritoryViewModel}" HorizontalAlignment="Left"/>
+          <userControls:GetOrdersControl Grid.Column="0" Grid.Row="1"/>
+        </Grid>
+      </TabItem>
+
+    </TabControl>
+
+  </Grid>
+  
+</Window>
