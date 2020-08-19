@@ -1,0 +1,4 @@
+id,description,price,taxed
+shoes,"Shoes, size 9",20,TRUE
+gum,"Spearmint, 5 ct",1,TRUE
+chisel,"Irwin 1"" Chisel",27.51,FALSE
